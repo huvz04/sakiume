@@ -11,7 +11,7 @@ const DraggableMusicPlayer: React.FC = () => {
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState<Position>({ x: 0, y: 0 });
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const isPlaying = useState(true);
   const [iframeVisible, setIframeVisible] = useState(true); // 控制iframe可见性而非完全移除
   const playerRef = useRef<HTMLDivElement>(null);
   const lastPositionRef = useRef<Position>({ x: 20, y: window.innerHeight - 120 }); // 存储上一次位置，优化拖动体验

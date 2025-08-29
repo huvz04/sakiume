@@ -3,7 +3,6 @@
 import HeroSection from "./components/HeroSection";
 import DraggableMusicPlayer from "./components/DraggableMusicPlayer";
 import "./App.css";
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { useEffect } from 'react';
 
 export default function App() {
