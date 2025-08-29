@@ -15,8 +15,8 @@
   "d1_databases": [
     {
       "binding": "DB",
-      "database_name": "sakiume-db",
-      "database_id": "placeholder-id"
+      "database_name": "ume",
+      "database_id": "18d6bca9-4ad0-4627-9b80-8ae8b12694b7"
     }
   ]
 }
