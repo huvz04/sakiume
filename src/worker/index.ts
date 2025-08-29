@@ -1,5 +1,10 @@
 import { Hono } from "hono";
-const app = new Hono<{ Bindings: Env }>();
+type Bindings = {
+  MY_VAR: string;
+  DB: D1Database;
+}
+
+const app = new Hono<{ Bindings: Bindings }>();
 
 app.get("/api/", (c) => c.json({ name: "Cloudflare" }));
 
