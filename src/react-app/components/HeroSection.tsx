@@ -20,7 +20,6 @@ const HeroSection = () => {
           loop 
           id="bg-video" 
           playsInline
-          onLoadedData={() => console.log('视频已加载')}
         >
           <source src="/video/hero-3.webm" type="video/webm" />
           Your browser does not support HTML5 video.
