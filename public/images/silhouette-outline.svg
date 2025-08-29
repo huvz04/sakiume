@@ -1,0 +1,39 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- 人物轮廓 - 简化版 -->
+  <path 
+    d="M400,150 C380,150 360,160 350,180 C340,200 335,220 330,240 C325,260 320,280 310,300 C300,320 290,340 290,360 C290,380 300,400 310,410 C320,420 330,425 340,430 C350,435 360,440 370,450 C380,460 390,470 400,480 C410,470 420,460 430,450 C440,440 450,435 460,430 C470,425 480,420 490,410 C500,400 510,380 510,360 C510,340 500,320 490,300 C480,280 475,260 470,240 C465,220 460,200 450,180 C440,160 420,150 400,150 Z"
+    fill="none"
+    stroke="white"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    opacity="0.8"
+  />
+  
+  <!-- 光效装饰 -->
+  <circle cx="400" cy="300" r="200" fill="none" stroke="white" stroke-width="1" opacity="0.3" />
+  <circle cx="400" cy="300" r="220" fill="none" stroke="white" stroke-width="0.5" opacity="0.2" />
+  
+  <!-- 光线效果 -->
+  <line x1="300" y1="200" x2="350" y2="250" stroke="white" stroke-width="1" opacity="0.5" />
+  <line x1="500" y1="200" x2="450" y2="250" stroke="white" stroke-width="1" opacity="0.5" />
+  <line x1="300" y1="400" x2="350" y2="350" stroke="white" stroke-width="1" opacity="0.5" />
+  <line x1="500" y1="400" x2="450" y2="350" stroke="white" stroke-width="1" opacity="0.5" />
+  
+  <!-- 添加一些装饰性光点 -->
+  <circle cx="350" cy="200" r="2" fill="white" opacity="0.8" />
+  <circle cx="450" cy="200" r="2" fill="white" opacity="0.8" />
+  <circle cx="350" cy="400" r="2" fill="white" opacity="0.8" />
+  <circle cx="450" cy="400" r="2" fill="white" opacity="0.8" />
+  
+  <!-- 滤镜效果 -->
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <!-- 应用滤镜的装饰元素 -->
+  <circle cx="400" cy="300" r="150" fill="none" stroke="white" stroke-width="1" opacity="0.2" filter="url(#glow)" />
+</svg>

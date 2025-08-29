@@ -1,66 +1,143 @@
 // src/App.tsx
 
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import cloudflareLogo from "./assets/Cloudflare_Logo.svg";
-import honoLogo from "./assets/hono.svg";
+import HeroSection from "./components/HeroSection";
+import DraggableMusicPlayer from "./components/DraggableMusicPlayer";
 import "./App.css";
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { useEffect } from 'react';
 
-function App() {
-  const [count, setCount] = useState(0);
-  const [name, setName] = useState("unknown");
+export default function App() {
+  useEffect(() => {
+    console.log('%c 🌸 普罗丢桑,很高兴认识你', 'color: #FF6B6B; font-size: 14px;');
+    console.log('GitHub:  https://github.com/huvz04');
+    console.log('X (Twitter): https://x.com/ume_Anchiyumi');
+    console.log('QQ: 1686448912');
+  }, []);
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
+      <div 
+        className="custom-navbar" 
+        style={{ 
+          position: 'absolute', 
+          top: 20, 
+          right: 20, 
+          zIndex: 1000,
+          display: 'flex',
+          gap: '20px',
+          alignItems: 'center'
+        }}
+      >
+        <a 
+          href="#" 
+          style={{
+            color: 'white',
+            fontFamily: '"Zen Antique Soft", serif',
+            fontSize: '2.3rem',
+            fontWeight: '600',
+            textDecoration: 'none',
+            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)',
+            transition: 'all 0.3s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.color = '#EA533A';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = 'white';
+          }}
+        >
+          HOME
         </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
+        <a 
+          href="#tool" 
+          style={{
+            color: 'white',
+            fontFamily: '"Zen Antique Soft", serif',
+            fontSize: '1.2rem',
+            fontWeight: '600',
+            textDecoration: 'none',
+            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8)',
+            transition: 'all 0.3s ease'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.color = '#EA533A';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = 'white';
+          }}
+        >
+          TOOL
         </a>
-        <a href="https://hono.dev/" target="_blank">
-          <img src={honoLogo} className="logo cloudflare" alt="Hono logo" />
+      </div>
+      {/* 左上角图标链接 */}
+      <div className="top-left-icons" style={{
+        position: 'absolute',
+        top: 20,
+        left: 20,
+        zIndex: 1000,
+        display: 'flex',
+        gap: '15px'
+      }}>
+        <a 
+          href="https://gakuen.idolmaster-official.jp/" 
+          className="icon-link"
+          style={{
+            display: 'block',
+            width: '210px',
+            height: '80px',
+            transition: 'all 0.3s ease'
+          }}
+          target="_blank"
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'scale(1.1)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'scale(1)';
+          }}
+        >
+          <img 
+            src="/images/gkmas.png" 
+            alt="GKMAS" 
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'contain'
+            }}
+          />
         </a>
-        <a href="https://workers.cloudflare.com/" target="_blank">
-          <img
-            src={cloudflareLogo}
-            className="logo cloudflare"
-            alt="Cloudflare logo"
+        <a 
+          href="https://idolmaster-official.jp/20th_anniversary" 
+          className="icon-link"
+          style={{
+            display: 'block',
+            width: '150px',
+            height: '100%',
+            transition: 'all 0.3s ease'
+          }}
+          target="_blank"
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'scale(1.1)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'scale(1)';
+          }}
+        >
+          <img 
+            src="/images/logo-20th.png" 
+            alt="20th Logo" 
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'contain'
+            }}
           />
         </a>
       </div>
-      <h1>Vite + React + Hono + Cloudflare</h1>
-      <div className="card">
-        <button
-          onClick={() => setCount((count) => count + 1)}
-          aria-label="increment"
-        >
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+      
+      <div className="app">
+        <HeroSection />
       </div>
-      <div className="card">
-        <button
-          onClick={() => {
-            fetch("/api/")
-              .then((res) => res.json() as Promise<{ name: string }>)
-              .then((data) => setName(data.name));
-          }}
-          aria-label="get name"
-        >
-          Name from API is: {name}
-        </button>
-        <p>
-          Edit <code>worker/index.ts</code> to change the name
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the logos to learn more</p>
+      <DraggableMusicPlayer />
     </>
   );
 }
-
-export default App;
