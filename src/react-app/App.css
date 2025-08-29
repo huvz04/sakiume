@@ -64,8 +64,8 @@ body {
   }
   
   .top-left-icons .icon-link {
-    width: 45px !important;
-    height: 45px !important;
+    width: 110px !important;
+    height: 65px !important;
   }
 }
 
@@ -79,7 +79,7 @@ body {
   }
   
   .top-left-icons .icon-link {
-    width: 40px !important;
-    height: 40px !important;
+    width: 80px !important;
+    height: 60px !important;
   }
 }
