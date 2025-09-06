@@ -18,13 +18,27 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
   transform: translate(-50%, -50%);
   z-index: 1;
   object-fit: cover;
+}
+
+/* 桌面端以宽度为主 */
+@media (min-width: 821px) {
+  #bg-video {
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+  }
+}
+
+/* 移动端以高度为主 */
+@media (max-width: 820px) {
+  #bg-video {
+    /* width: auto; */
+    height: 133%;
+    min-width: 100%;
+  }
 }
 
 /* 人物轮廓遮罩样式 */
@@ -46,7 +60,7 @@
 
 .content {
   position: absolute;
-  bottom: 25%;
+  bottom: 30%;
   right: 25%;
   transform: none;
   z-index: 4;
@@ -56,7 +70,7 @@
 }
 
 .content h1 {
-  font-size: 4rem;
+  font-size: 5rem;
   margin-bottom: 0.5rem;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   letter-spacing: 2px;
@@ -104,12 +118,49 @@ body, html {
 }
 
 /* 响应式设计 */
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   .content h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
   
   .content p {
-    font-size: 1rem;
+    font-size: 1.5rem;
+  }
+  
+  /* 移动端缩小人物轮廓 */
+  .silhouette-mask {
+    transform: translate(-50%, -50%) scale(2.5);
+    max-width: 70%;
+    max-height: 70%;
+    opacity: 0.5;
+  }
+  
+  .content {
+    bottom: 30%;
+    right: 10%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .silhouette-mask {
+    transform: translate(-50%, -50%) scale(2.0);
+    max-width: 60%;
+    max-height: 60%;
+    opacity: 0.4;
+  }
+  
+  .content h1 {
+    font-size: 2rem;
+  }
+  
+  .content p {
+    font-size: 0.9rem;
+  }
+  
+  .content {
+    bottom: 29%;
+    right: 5%;
+    max-width: 250px;
   }
 }

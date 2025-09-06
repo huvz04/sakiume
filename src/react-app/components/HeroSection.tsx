@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-
+import config from "../config/config.json"
 import './HeroSection.css';
 
 const HeroSection = () => {
@@ -21,13 +21,13 @@ const HeroSection = () => {
           id="bg-video" 
           playsInline
         >
-          <source src="/video/hero-3.webm" type="video/webm" />
+          <source src={config.assets.video.hero} type="video/webm" />
           Your browser does not support HTML5 video.
         </video>
         
         {/* 人物轮廓遮罩 */}
         <img 
-          src="/images/gakumas.svg" 
+          src={config.assets.icons.hatsuhoshi}
           alt="人物轮廓" 
           className={`silhouette-mask ${isLoaded ? 'fade-in' : ''}`}
         />
