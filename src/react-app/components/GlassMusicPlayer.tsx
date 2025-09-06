@@ -93,14 +93,12 @@ const GlassMusicPlayer: React.FC = () => {
   // 状态管理
   const [position, setPosition] = useState<Position>({ x: window.innerWidth / 2 - 300, y: window.innerHeight - 220 });
   const [isDragging, setIsDragging] = useState(false);
-  const [dragOffset, setDragOffset] = useState<Position>({ x: 0, y: 0 });
   const [isExpanded, setIsExpanded] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(0.7);
   const [isMobile, setIsMobile] = useState(false);
-  const [isPlaylistOpen, setIsPlaylistOpen] = useState(false);
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [bgColor, setBgColor] = useState('rgba(57, 57, 57, 0.5)');
   const [lyrics, setLyrics] = useState<{ time: number; text: string }[]>([]); 
@@ -108,8 +106,7 @@ const GlassMusicPlayer: React.FC = () => {
   const playerRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
-  const lastPositionRef = useRef<Position>({ x: 20, y: window.innerHeight - 440 });
-  
+
   // 歌词上下文
   const lyricsContext = useContext(LyricsContext);
   // 歌曲列表 - 纯音乐版本和人声版本
