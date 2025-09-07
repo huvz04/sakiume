@@ -8,6 +8,7 @@
       "hatsuhoshi": "/icon/gakumas.svg"
     },
     "images": {
+      "starMine-start": "/images/Star-mine.png",
       "starMine": "/images/Star-mine.jpeg",
       "logo20th": "/images/logo-20th.png"
     },
@@ -21,19 +22,19 @@
       "songs": [
         {
           "id": "1",
-          "title": "Star-mine (Instrumental)",
-          "artist": "初星学園、じん",
+          "title": "Star-mine (Short Ver.)",
+          "artist": "初星学園、じん、花海佑芽",
           "cover": "/images/Star-mine.jpeg",
-          "file": "/music/Star-mine (Instrumental) - 初星学園、じん、Begrazia、花海佑芽、秦谷美鈴、十王星南.mp3",
-          "lyrics": ""
+          "file": "/music/Star-mine (Short Ver.) - 初星学園、じん、Begrazia、花海佑芽.mp3",
+          "lyrics": "/music/Star-mine (Short Ver.) - 初星学園、じん、Begrazia、花海佑芽.lrc"
         },
         {
           "id": "2",
-          "title": "Star-mine (Vocal)",
-          "artist": "初星学園、じん、Begrazia",
+          "title": "Star-mine (Inst.)",
+          "artist": "初星学園、じん",
           "cover": "/images/Star-mine.jpeg",
           "file": "/music/Star-mine - 初星学園、じん、Begrazia、花海佑芽、秦谷美鈴、十王星南.mp3",
-          "lyrics": "/music/Star-mine - 初星学園、じん、Begrazia、花海佑芽、秦谷美鈴、十王星南.lrc"
+          "lyrics": ""
         }
       ]
     }

@@ -14,10 +14,10 @@ export default function App() {
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
 
   useEffect(() => {
-    console.log('%c 🌸 普罗丢桑,很高兴认识你', 'color: #FF6B6B; font-size: 14px;');
-    console.log('GitHub:  https://github.com/huvz04');
-    console.log('X (Twitter): https://x.com/ume_Anchiyumi');
-    console.log('QQ: 1686448912');
+    // console.log('%c 🌸 普罗丢桑,很高兴认识你', 'color: #FF6B6B; font-size: 14px;');
+    // console.log('GitHub:  https://github.com/huvz04');
+    // console.log('X (Twitter): https://x.com/ume_Anchiyumi');
+    // console.log('QQ: 1686448912');
 
     // 获取页面访问次数和设备类型
     fetch('/api/visit-count', {

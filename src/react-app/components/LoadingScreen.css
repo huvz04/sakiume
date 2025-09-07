@@ -1,64 +1,445 @@
-.loading-container {
+.gakumas-loading-container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #000;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 9999;
   opacity: 1;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.8s ease;
+  overflow: hidden;
+  cursor: pointer;
 }
 
-.loading-container.fade-out {
+.gakumas-loading-container.fade-out {
   opacity: 0;
 }
 
-.loading-content {
+/* 背景渐变 - 更复杂的多层渐变 */
+.gakumas-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background: 
+    radial-gradient(ellipse at 30% 20%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(255, 100, 150, 0.2) 0%, transparent 50%),
+    linear-gradient(135deg, 
+      rgba(20, 20, 40, 1) 0%,
+      rgba(40, 20, 60, 0.95) 25%,
+      rgba(60, 30, 80, 0.9) 50%,
+      rgba(30, 40, 70, 0.95) 75%,
+      rgba(10, 10, 20, 1) 100%); */
+  background: linear-gradient(126deg, #7f52a2 0%, #0e1131 20%, #1a1a1a 50%, #0e1131 80%, #173f7c 100%);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.gradient-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg,
+      rgba(139, 0, 0, 0.2) 0%,
+      rgba(0, 0, 139, 0.2) 30%,
+      rgba(75, 0, 130, 0.25) 50%,
+      rgba(139, 0, 0, 0.2) 70%,
+      rgba(0, 0, 139, 0.2) 100%);
+  /* animation: gradientShift 6s ease-in-out infinite alternate; */
+}
+
+@keyframes gradientShift {
+  0% {
+    background: linear-gradient(45deg,
+        rgba(139, 0, 0, 0.2) 0%,
+        rgba(0, 0, 139, 0.2) 30%,
+        rgba(75, 0, 130, 0.25) 50%,
+        rgba(139, 0, 0, 0.2) 70%,
+        rgba(0, 0, 139, 0.2) 100%);
+  }
+
+  100% {
+    background: linear-gradient(225deg,
+        rgba(0, 0, 139, 0.25) 0%,
+        rgba(75, 0, 130, 0.2) 30%,
+        rgba(139, 0, 0, 0.25) 50%,
+        rgba(0, 0, 139, 0.2) 70%,
+        rgba(139, 0, 0, 0.2) 100%);
+  }
+}
+
+/* 中央卡片 - 添加白色发光边框 */
+.gakumas-card {
+  position: relative;
+  width: 660px;
+  height: 300px;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(15px);
+  box-shadow:
+    0 0 20px rgba(255, 255, 255, 0.3),
+    0 0 40px rgba(255, 255, 255, 0.2),
+    0 8px 32px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  z-index: 10;
+  /* animation: syncGlow 2s ease-in-out infinite alternate; */
+}
+@keyframes syncGlow {
+  0% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 255, 255, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 255, 255, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 255, 255, 0.4);
+  }
+}
+/* @keyframes cardGlow {
+  0% {
+    box-shadow:
+      0 0 20px rgba(255, 255, 255, 0.3),
+      0 0 40px rgba(255, 255, 255, 0.2),
+      0 8px 32px rgba(0, 0, 0, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  100% {
+    box-shadow:
+      0 0 30px rgba(255, 255, 255, 0.4),
+      0 0 60px rgba(255, 255, 255, 0.3),
+      0 8px 32px rgba(0, 0, 0, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+} */
+
+.card-content {
+  display: flex;
+  height: 100%;
+  width: 600px;
+  padding: 24px;
+  gap: 24px;
+}
+
+.card-image {
+  flex-shrink: 0;
+  margin-top: 30px;
+  width: 200px;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-info {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 20px;
+  justify-content: center;
+  color: white;
+  font-family: 'Zen Antique Soft', serif;
 }
 
-.loading-image {
-  width: 150px;
+.card-info h2 {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+/* 分割线 */
+.card-info h2::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: white;
+  margin: 8px 0 4px 0;
+  border-radius: 1px;
+}
+
+.card-song-idol {
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: #E0E0E0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.card-song-artist {
+  font-size: 14px;
+  color: #E0E0E0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.card-song-credits {
+  font-size: 14px;
+  color: #B0B0B0;
+  line-height: 1.6;
+}
+
+.card-song-credits p {
+  margin: 4px 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.card-logo {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 45px;
+  height: 45px;
+  opacity: 0.9;
+}
+
+.card-logo img {
+  width: 100%;
   height: 100%;
-  animation: bounce 1.5s infinite alternate;
+  object-fit: contain;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.8));
 }
 
-@keyframes bounce {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-15px);
-  }
+/* 底部文字 */
+.gakumas-text {
+  position: absolute;
+  bottom: 30%;
+  font-family: 'Zen Antique Soft', serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  z-index: 10;
+  pointer-events: none;
 }
 
-.loading-bar {
-  width: 300px;
-  height: 10px;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 5px;
-  overflow: hidden;
+.loading-text {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.dots {
+  display: inline-block;
+  width: 30px;
+  text-align: left;
   position: relative;
 }
 
-.loading-color {
-  height: 100%;
-  background: linear-gradient(90deg, #EA533A, #FF9E7D);
-  border-radius: 5px;
-  transition: width 0.3s ease;
+.dots::after {
+  content: ".";
+  animation: dotAnimation 1.5s infinite;
 }
 
-.loading-num {
-  font-family: 'Zen Antique Soft', serif;
+@keyframes dotAnimation {
+  0% {
+    content: ".";
+  }
+
+  33% {
+    content: "..";
+  }
+
+  66% {
+    content: "...";
+  }
+
+  100% {
+    content: ".";
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 0.7;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes blink {
+
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* TAP TO START - 改为白色 */
+.tap-to-start {
   color: white;
-  font-size: 24px;
-  font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  animation: opacityPulse 2s ease-in-out infinite alternate;
+  /* transition: transform 0.2s ease; */
+  user-select: none;
+  pointer-events: none;
+}
+@keyframes opacityPulse {
+  0% {
+    opacity: 1;
+    text-shadow:
+      2px 2px 4px rgba(0, 0, 0, 0.8),
+      0 0 15px rgba(255, 255, 255, 0.8);
+  }
+
+  50% {
+    opacity: 0.3;
+    text-shadow:
+      2px 2px 4px rgba(0, 0, 0, 0.8),
+      0 0 25px rgba(255, 255, 255, 0.6);
+  }
+
+  100% {
+    opacity: 1;
+    text-shadow:
+      2px 2px 4px rgba(0, 0, 0, 0.8),
+      0 0 15px rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 850px) {
+  .gakumas-card {
+    width: 90vw;
+    max-width: 500px;
+    height: 260px;
+  }
+
+  .card-content {
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .card-image {
+    width: 160px;
+    height: 160px;
+  }
+  .card-info {
+    max-width: 250px;
+  }
+  .card-info h2 {
+    font-size: 32px;
+  }
+
+  .song-card-artist {
+    font-size: 16px;
+  }
+
+  .song-card-credits {
+    font-size: 12px;
+  }
+
+  .light-beam-1 {
+    left: 10%;
+  }
+
+  .light-beam-2 {
+    right: 10%;
+  }
+  .gakumas-text {
+    bottom: 22%;
+  }
+}
+
+@media (max-width: 480px) {
+  .gakumas-card {
+
+    height: 220px;
+  }
+
+  .card-content {
+    /* flex-direction: column;
+    align-items: center;
+    text-align: center; */
+    padding: 16px;
+  }
+  .card-info {
+    max-width: 230px;
+    min-width: 20px;
+    width: 80%;
+  }
+  .card-info h2::after {
+    content: '';
+    display: block;
+    /* width: 80%; */
+    height: 1px;
+    background: white;
+    margin: 8px 0 4px 0;
+    border-radius: 0.5px;
+  }
+
+  .card-image {
+    width: 120px;
+    height: 120px;
+  }
+
+  .card-song-title {
+    font-size: 16px;
+  }
+
+  .card-song-idol {
+    font-size: 14px
+  }
+
+  .card-song-artist {
+    font-size: 8px;
+  }
+
+  .card-song-credits {
+    font-size: 6px;
+  }
+  .gakumas-text {
+    bottom: 25%;
+  }
+}
+
+/* TAP TO START - 不透明到透明的闪烁渐变 */
+.tap-to-start {
+  color: white;
+  animation: opacityPulse 1.5s ease-in-out infinite;
+  transition: transform 0.2s ease;
+  user-select: none;
+  pointer-events: none;
+}
+
+@keyframes opacityPulse {
+  0% {
+    opacity: 1;
+    text-shadow:
+      2px 2px 4px rgba(0, 0, 0, 0.8),
+      0 0 15px rgba(255, 255, 255, 0.8);
+  }
+
+  50% {
+    opacity: 0.3;
+    text-shadow:
+      2px 2px 4px rgba(0, 0, 0, 0.8),
+      0 0 25px rgba(255, 255, 255, 0.6);
+  }
+
+  100% {
+    opacity: 1;
+    text-shadow:
+      2px 2px 4px rgba(0, 0, 0, 0.8),
+      0 0 15px rgba(255, 255, 255, 0.8);
+  }
 }

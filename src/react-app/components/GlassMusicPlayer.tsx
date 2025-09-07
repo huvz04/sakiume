@@ -29,14 +29,14 @@ interface LyricsContextType {
   setIsVisible?: (visible: boolean) => void;
 }
 // 创建歌词上下文
-export const LyricsContext = createContext<LyricsContextType>({ currentLyric: '', nextLyric: '', isVisible: false });
+export const LyricsContext = createContext<LyricsContextType>({ currentLyric: '', nextLyric: '', isVisible: true });
 
 
 // 歌词提供组件
 export const LyricsProvider: React.FC<{children: React.ReactNode}> = ({ children }) => {
-  const [currentLyric, setCurrentLyric] = useState('...');
+  const [currentLyric, setCurrentLyric] = useState('');
   const [nextLyric, setNextLyric] = useState('');
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   
   return (
     <LyricsContext.Provider value={{
@@ -155,7 +155,7 @@ const GlassMusicPlayer: React.FC = () => {
     const loadLyrics = async () => {
       console.log(songs[currentSongIndex].lyrics)
       if (!songs[currentSongIndex].lyrics || songs[currentSongIndex].lyrics === '' || songs[currentSongIndex].lyrics == null) { // 检查当前歌曲是否有歌词路径
-        setLyrics([{time: 0, text: '...'}]); // 如果没有歌词文件，清空歌词
+        setLyrics([{time: 0, text: ''}]); // 如果没有歌词文件，清空歌词
         return;
       }
       try {
@@ -220,6 +220,7 @@ const GlassMusicPlayer: React.FC = () => {
             y: window.innerHeight - 200
           });
         } else {
+          
           setPosition({
             x: window.innerWidth - 80,
             y: window.innerHeight - 80
@@ -433,12 +434,6 @@ const GlassMusicPlayer: React.FC = () => {
               <h3 className="song-title">{currentSong.title}</h3>
               <p className="song-artist">{currentSong.artist}</p>
             </div>
-{/*             
-            <div className="lyrics-container">
-              <p className="current-lyric">{lyricsContext.currentLyric}</p>
-              <p className="next-lyric">{lyricsContext.nextLyric}</p>
-            </div> */}
-            
             <div className="progress-container">
               <div className="time-display">
                 <span>{formatTime(currentTime)}</span>
